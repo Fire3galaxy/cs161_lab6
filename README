@@ -1,0 +1,13 @@
+To-do
+1. Use 2D-vector (or vector with nested queue/priority queue)
+    - Column: size/associativity
+    - Row: 16 (store address in a set of 16)
+2. If miss
+    - replace: LRU(Last recently used)
+               FIFO (First in first out)
+3. If hit
+    - store the hit times so we can compute the hit rate later
+4. Input will be a bunch of addresses
+    - Need to read in line by line
+    - Need to store them into cache at the same time (do we make several differnet vector or do it one by one?)
+    - Need to do replacement and keep track of hit rate 
