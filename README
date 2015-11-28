@@ -1,4 +1,4 @@
---To-do
+##To-do
 1. Use 2D-vector (or vector with nested queue/priority queue)
     - Column: size/associativity
     - Row: 16 (store address in a set of 16)
@@ -13,7 +13,7 @@
     - Need to do replacement and keep track of hit rate 
 
 ---
---[Deliverables](http://www.cs.ucr.edu/~windhs/lab7/lab7.html)
+####Deliverables
 
 You should build a cache simulator that reads one address trace file and simulates multiple cache architectures and reports the miss rate (# misses / total accesses). Your simulator should support all the following attributes:
 
@@ -43,3 +43,5 @@ FIFO Replacement Policy
 2	53.31	38.32	25.47	15.37	09.49
 4	51.86	37.07	23.11	13.67	07.86
 8	51.14	35.98	22.40	12.79	07.44
+
+http://www.cs.ucr.edu/~windhs/lab7/lab7.html
