@@ -13,7 +13,7 @@
     - Need to do replacement and keep track of hit rate 
 
 ---
-####Deliverables
+####[Deliverables](http://www.cs.ucr.edu/~windhs/lab7/lab7.html)
 
 You should build a cache simulator that reads one address trace file and simulates multiple cache architectures and reports the miss rate (# misses / total accesses). Your simulator should support all the following attributes:
 
