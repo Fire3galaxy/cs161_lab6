@@ -1,7 +1,7 @@
 ##To-do
 1. Use 2D-vector (or vector with nested queue/priority queue)
     - Column: size/associativity
-    - Row: 16 (store address in a set of 16)
+    - Row: blocks of 16 (store address in a set of 16, valid bit w/ each block), # blocks -> associativity
 2. If miss
     - replace: LRU(Last recently used)
                FIFO (First in first out)
@@ -11,6 +11,12 @@
     - Need to read in line by line
     - Need to store them into cache at the same time (do we make several differnet vector or do it one by one?)
     - Need to do replacement and keep track of hit rate 
+
+##Notes
+    - Block offset always is 4 bits (16 elements).
+    - Index is different based on associativity and cache size and needs to represent the number of sets we have.
+    - e.g. Direct mapping + size of 1024 blocks = 1024 sets, 10 bits for index
+    - Tag is the rest of the 64 bit address. e.g. for above case, 50 bits for tag.
 
 ---
 ####[Deliverables](http://www.cs.ucr.edu/~windhs/lab7/lab7.html)
