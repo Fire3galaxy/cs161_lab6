@@ -13,10 +13,10 @@
     - Need to do replacement and keep track of hit rate 
 
 ##Notes
-    - Block offset always is 4 bits (16 elements).
-    - Index is different based on associativity and cache size and needs to represent the number of sets we have.
+- Block offset always is 4 bits (16 elements).
+- Index is different based on associativity and cache size and needs to represent the number of sets we have.
     - e.g. Direct mapping + size of 1024 blocks = 1024 sets, 10 bits for index
-    - Tag is the rest of the 64 bit address. e.g. for above case, 50 bits for tag.
+- Tag is the rest of the 64 bit address. e.g. for above case, 50 bits for tag.
 
 ---
 ####[Deliverables](http://www.cs.ucr.edu/~windhs/lab7/lab7.html)
