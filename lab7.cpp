@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int log2(int num);
+
 int main() {
     // Load all addresses into single vector first
     const long TOTAL = 1212176;
@@ -47,10 +49,6 @@ int main() {
     replacement[0] = "FIFO";
     replacement[1] = "LRU";
 
-    cout << (CACHE_SIZE[2] / BLOCK_ELEMS) / ASSOCIATIVITY[3] << endl;
-
-    return 0;
-
     cout << hex;
     for (int r = 0; r < 2; r++) {               // fifo, lru
         cout << replacement[r] << endl; // FIXME change in replacement
@@ -65,7 +63,7 @@ int main() {
                 cout << "Associativity: " << ASSOCIATIVITY[a] << endl; // FIXME change in associativity
 
                 int numCacheSets = (CACHE_SIZE[s] / BLOCK_ELEMS) / ASSOCIATIVITY[a];
-                int indexBits = log_2 (numCacheSets);
+                int indexBits = log2(numCacheSets);
 
                 for (int i = 0; i < 3; i++) {   // trace file
                     long long index = addresses.at(i) >> BLOCK_BITS;
@@ -77,4 +75,15 @@ int main() {
             }
         }
     }
+}
+
+// Basic log_2 function. will fail on non-power-of-two
+int log2(int num) {
+    if (num <= 0) return -1;
+
+    int log = 0;
+    for (log = 0; num != 1; log++)
+        num /= 2;
+
+    return log;
 }
