@@ -44,36 +44,18 @@ int main() {
     ASSOCIATIVITY[2] = 4;
     ASSOCIATIVITY[3] = 8;
 
-    // FIXME: delete this later. just testing for loop
-    string replacement[2];
-    replacement[0] = "FIFO";
-    replacement[1] = "LRU";
 
+    // Direct mapping, Size 1024, FIFO
     cout << hex;
-    for (int r = 0; r < 2; r++) {               // fifo, lru
-        cout << replacement[r] << endl; // FIXME change in replacement
+    int numCacheSets = (CACHE_SIZE[0] / BLOCK_ELEMS) / ASSOCIATIVITY[0];
+    int indexBits = log2(numCacheSets);
 
-        for (int s = 0; s < 5; s++) {           // 1024, 2048, ...
-            // decides what bit mask to use to get index
-            int mask = s + 3; 
+    for (int i = 0; i < TOTAL; i++) {   // trace file
+        long long index = addresses.at(i) >> BLOCK_BITS;
+        index = index & BITMASK[3]; 
+        long long tag = addresses.at(i) >> (indexBits + BLOCK_BITS);
 
-            cout << "Size: " << CACHE_SIZE[s] << endl; // FIXME change in cache size
-
-            for (int a = 0; a < 4; a++, mask--) {   // direct map, 2-way, 4-way, ...
-                cout << "Associativity: " << ASSOCIATIVITY[a] << endl; // FIXME change in associativity
-
-                int numCacheSets = (CACHE_SIZE[s] / BLOCK_ELEMS) / ASSOCIATIVITY[a];
-                int indexBits = log2(numCacheSets);
-
-                for (int i = 0; i < 3; i++) {   // trace file
-                    long long index = addresses.at(i) >> BLOCK_BITS;
-                    index = index & BITMASK[mask]; 
-                    long long tag = addresses.at(i) >> (indexBits + BLOCK_BITS);
-
-                    cout << index << ' ' << tag << endl;
-                }
-            }
-        }
+        cout << index << ' ' << tag << endl;
     }
 }
 
