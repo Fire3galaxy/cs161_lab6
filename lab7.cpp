@@ -57,7 +57,40 @@ int main() {
     fs.close();
 
     cout << setprecision(2) << fixed;
-    cout << "Miss ratio: " << simulate_cache(4, 3, 0, addresses) << endl;
+
+    for(int r = 0; r < 2; r++) //for 0 = LRU, 1 = FIFO
+    {
+        if(r == 0)
+            cout << "      LRU Replacement Policy" << endl;
+        else
+            cout << endl << "     FIFO Replacement Policy" << endl;
+
+        for(int a = 0; a < 5; a++) //from fully to 8-ways
+        {
+            if(a > 0)
+            {
+                int tmp = a-1;
+                cout << ASSOCIATIVITY[tmp] << "  ";
+            }
+            for(int s = 0; s < 5; s++) //from 1028 to 16384
+            {
+                if(a == 0)
+                {
+                    if(s == 0)
+                        cout << "   ";
+                    cout <<  dec << CACHE_SIZE[s] << "  ";
+                }
+                else
+                {
+                    int assoc = a-1;
+                    cout << setfill('0') << setw(5) << simulate_cache(s, assoc, r, addresses) << " ";
+                }
+            }
+            cout << endl;
+        }
+    }
+
+
 }
 
 double simulate_cache(int ch, int asso, int rp, vector<long long>& addresses)
@@ -83,6 +116,11 @@ double simulate_cache(int ch, int asso, int rp, vector<long long>& addresses)
 
             if (b.valid && b.tag == tag) {
                 hit = true;
+                if(rp == 0) //see it as LRU, 
+                {
+                   cache.at(index).erase(it);
+                   cache.at(index).push_front(b);
+                }
                 break;
             }
         }
